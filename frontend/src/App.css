@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --color-primary: #646cff;
+  --color-background: #ffffff;
+  --color-dark: #1a1a1a;
+}
+
+body {
+  @apply bg-white text-gray-800 font-sans antialiased;
+}
+
+a {
+  @apply text-blue-600 hover:text-blue-800 font-medium underline;
+}
+
+h1 {
+  @apply text-4xl font-bold leading-tight;
+}
+
+button {
+  @apply px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition;
+}
