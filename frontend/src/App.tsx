@@ -42,13 +42,13 @@ const App: React.FC = () => {
   const currentPathname = location.pathname.replace(/\/$/, '');
 
   const showNavAndFooter = !noNavFooterRoutes.includes(currentPathname);
-  const publicPagesWithHero = ['/', '/about', '/services', '/press-releases', '/contact'].map(path => path.replace(/\/$/, ''));
+  const publicPagesWithHero = ['/', '/tentang', '/kegiatan', '/press-releases', '/contact'].map(path => path.replace(/\/$/, ''));
 
   return (
     <div className="flex min-h-screen flex-col"> 
       {showNavAndFooter && <Navbar />}
       
-      <main className={`w-full flex-1 ${showNavAndFooter && !publicPagesWithHero.includes(currentPathname) ? 'pt-20' : ''}`}> 
+      <main className={`w-full flex-1 ${showNavAndFooter && !publicPagesWithHero.includes(currentPathname) ?'' : ''}`}> 
         <Routes>
           {/* Rute Publik */}
           <Route path="/" element={<Home />} />

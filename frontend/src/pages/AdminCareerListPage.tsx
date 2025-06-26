@@ -1,5 +1,3 @@
-// frontend/imnbg/src/pages/AdminCareerListPage.tsx
-
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getAllCareers, deleteCareer } from '../services/careerService';
@@ -76,8 +74,8 @@ const AdminCareerListPage: React.FC = () => {
 
   return (
     <div 
-      className="flex min-h-screen w-screen flex-col items-center bg-cover bg-center" /* Full screen background */
-      style={{ backgroundImage: 'url("/imn-building2.png")' }} /* Local image */
+      className="flex min-h-screen w-screen flex-col items-center bg-cover bg-center"
+      style={{ backgroundImage: 'url("/imn-building2.png")' }}
     >
       <div className="w-full max-w-6xl rounded-xl bg-white bg-opacity-90 p-8 shadow-2xl backdrop-blur-sm border border-blue-200 my-8"> {/* Wider container */}
         <div className="flex justify-between items-center mb-6">

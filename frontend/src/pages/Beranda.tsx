@@ -4,10 +4,12 @@ import RevealOnScroll from '../components/RevealOnScroll';
 
 const Home = () => {
   const [showContent, setShowContent] = useState(false);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowContent(true);
     }, 500);
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -90,21 +92,21 @@ const Home = () => {
     <div className="min-h-screen flex flex-col bg-white text-gray-800">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative h-screen w-full backdrop-blur-xs -mt-20 overflow-hidden">
-          {/* Video Background */}
-          <video 
-            autoPlay 
-            loop 
-            muted 
+        <section className="relative w-full h-screen overflow-hidden">
+          {/* Fullscreen Video */}
+          <video
+            autoPlay
+            loop
+            muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute top-0 left-0 w-full h-full object-cover"
             src="/building1.mp4"
           >
             Your browser does not support the video tag.
           </video>
 
           {/* Overlay and Content */}
-          <div className="absolute inset-0 opacity-60"></div>
+          <div className="absolute inset-0 bg-black opacity-60"></div>
           <div className="relative z-10 flex items-center justify-center text-center text-white px-6 h-full w-full">
             <div className="max-w-4xl mx-auto p-8 rounded-lg">
               {/* Animated Text */}
@@ -123,7 +125,7 @@ const Home = () => {
                 IMN Business Group merupakan perusahaan yang bergerak di bidang investasi yang konsisten bertumbuh serta berkontribusi positif bagi bangsa dan negara
               </p>
               <Link
-                to="/about"
+                to="/tentang"
                 className={`bg-white text-blue-900 hover:bg-gray-100 px-6 py-3 rounded-full text-lg transition-all duration-1000 delay-500 ${
                   showContent ? 'opacity-100' : 'opacity-0'
                 }`}
@@ -174,7 +176,7 @@ const Home = () => {
 
         {/* Section 4: Call To Action */}
         <RevealOnScroll delay={0} animationType="slide-up">
-          <section className="py-20 bg-blue-900 text-white text-center w-full">
+          <section className="py-20 bg-blue-600 text-white text-center w-full">
             <div className="max-w-4xl mx-auto px-6">
               <h2 className="text-3xl font-bold mb-4 text-white">Siap Bermitra dengan Kami?</h2>
               <p className="mb-6 text-lg text-white">Bangun masa depan bisnis Anda bersama IMN Business Group.</p>

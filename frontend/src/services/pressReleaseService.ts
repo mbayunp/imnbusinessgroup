@@ -1,20 +1,18 @@
-import api from './api'; // Mengimpor instance Axios yang sudah dikonfigurasi
-import { PressRelease, PressReleasePayload } from '../types/pressRelease'; // Mengimpor interface PressRelease dan PressReleasePayload
-import axios, { AxiosError } from 'axios'; // Import axios dan AxiosError untuk penanganan error
+import api from './api';
+import { PressRelease, PressReleasePayload } from '../types/pressRelease';
+import axios, { AxiosError } from 'axios';
 
-// Fungsi untuk mengunggah gambar
 const uploadImage = async (file: File): Promise<string> => {
   try {
-    const formData = new FormData(); // Membuat FormData untuk mengirim file
-    formData.append('image', file); // 'image' adalah nama field yang diharapkan Multer di backend
+    const formData = new FormData();
+    formData.append('image', file);
 
-    // Mengirim file ke endpoint upload
     const response = await api.post<{ imageUrl: string }>('/upload', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data', // Penting untuk upload file
+        'Content-Type': 'multipart/form-data',
       },
     });
-    return response.data.imageUrl; // Mengembalikan URL gambar yang diterima dari backend
+    return response.data.imageUrl;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
       throw (error.response?.data as { message?: string })?.message || error.message;
@@ -24,7 +22,6 @@ const uploadImage = async (file: File): Promise<string> => {
 };
 
 
-// Fungsi untuk mengambil semua berita pers
 const getAllPressReleases = async (): Promise<PressRelease[]> => {
   try {
     const response = await api.get<PressRelease[]>('/press-releases');
@@ -37,7 +34,6 @@ const getAllPressReleases = async (): Promise<PressRelease[]> => {
   }
 };
 
-// Fungsi untuk mengambil satu berita pers berdasarkan ID
 const getPressReleaseById = async (id: string): Promise<PressRelease> => {
   try {
     const response = await api.get<PressRelease>(`/press-releases/${id}`);
@@ -70,7 +66,6 @@ const createPressRelease = async (pressReleaseData: PressReleasePayload): Promis
   }
 };
 
-// Fungsi untuk mengupdate berita pers (membutuhkan otorisasi)
 const updatePressRelease = async (id: string, pressReleaseData: PressReleasePayload): Promise<PressRelease> => {
   try {
     const response = await api.put<PressRelease>(`/press-releases/${id}`, pressReleaseData);
@@ -83,7 +78,6 @@ const updatePressRelease = async (id: string, pressReleaseData: PressReleasePayl
   }
 };
 
-// Fungsi untuk menghapus berita pers (membutuhkan otorisasi)
 const deletePressRelease = async (id: string): Promise<{ message: string }> => {
   try {
     const response = await api.delete<{ message: string }>(`/press-releases/${id}`);
@@ -96,7 +90,6 @@ const deletePressRelease = async (id: string): Promise<{ message: string }> => {
   }
 };
 
-// BARU: Fungsi untuk mengambil statistik berita pers
 interface PressReleaseStats {
   totalPressReleases: number;
 }
@@ -113,7 +106,6 @@ const getPressReleaseStats = async (): Promise<PressReleaseStats> => {
   }
 };
 
-// Export all functions as named exports, including uploadImage and getPressReleaseStats
 export {
   getAllPressReleases,
   getPressReleaseById,

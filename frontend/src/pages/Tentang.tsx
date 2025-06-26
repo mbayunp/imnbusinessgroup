@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, EffectFade } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/effect-fade';
 
 import RevealOnScroll from '../components/RevealOnScroll';
 
@@ -73,7 +72,7 @@ const About: React.FC = () => {
       <main className="flex-grow">
         {/* Hero Section*/}
         <section 
-          className="relative h-screen w-full -mt-20 overflow-hidden flex items-center justify-center text-center text-white"
+          className="relative h-screen w-full overflow-hidden flex items-center justify-center text-center text-white"
         >
           {/* Video Background */}
           <video 
@@ -87,7 +86,7 @@ const About: React.FC = () => {
             Your browser does not support the video tag.
           </video>
 
-          <div className="absolute inset-0 opacity-60"></div> 
+          <div className="absolute inset-0 bg-black opacity-60"></div> 
           <div className="relative z-10 flex items-center justify-center text-center text-white px-6 h-full w-full"> 
             <div className="max-w-4xl mx-auto p-8 rounded-lg">
               <h1 
@@ -179,15 +178,11 @@ const About: React.FC = () => {
               <div className="max-w-7xl mx-auto">
                 <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">Anak Perusahaan</h2>
                 <Swiper
-                  modules={[Navigation, EffectFade]}
+                  modules={[Navigation]}
                   navigation
-                  effect="fade"
-                  fadeEffect={{ crossFade: true }}
                   loop
                   speed={600}
-                  spaceBetween={40}
                   slidesPerView={1}
-                  aria-label="Slider anak perusahaan"
                   className="relative max-w-5xl mx-auto"
                 >
                   {anakPerusahaan.map((group, idx) => (
@@ -261,37 +256,44 @@ const About: React.FC = () => {
             </section>
           </RevealOnScroll>
 
-          {/* Team Section*/}
+          {/* Tim Kami Section*/}
           <RevealOnScroll delay={500} animationType="slide-up">
-            <section className="mb-20 px-4 sm:px-6 lg:px-8 w-full">
-              <div className="max-w-5xl mx-auto">
-                <h2 className="text-4xl font-semibold text-center text-gray-900 mb-14">Tim Kami</h2>
-
-                {/* A */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-3xl mx-auto">
-                  {teamTop.map(({name,role,image}, index) => (
-                    <div key={index} className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-300">
-                      <div className="w-64 h-64 mb-6 rounded-xl overflow-hidden flex items-center justify-center bg-gray-50">
-                        <img src={image} alt={name} className="w-full h-full object-cover object-top" draggable={false} />
+            <section className="mb-20 px-4 sm:px-6 lg:px-8 w-full bg-white text-blue-600 py-20 rounded-xl">
+              <div className="max-w-5xl mx-auto text-center">
+                <h2 className="text-3xl font-bold mb-8">Kepemimpinan</h2>
+                <Swiper
+                  modules={[Navigation]}
+                  navigation
+                  loop
+                  speed={600}
+                  slidesPerView={1}
+                  className="relative"
+                >
+                  {[...teamTop, ...teamBottom].map((member, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="flex flex-col items-center justify-center space-y-6">
+                        <div className="text-base sm:text-lg md:text-xl max-w-3xl text-gray-800 leading-relaxed px-4">
+                          <p>
+                            “Sebagai bagian dari IMN Business Group, kami percaya bahwa inovasi dan kolaborasi adalah fondasi kesuksesan kami baik di dalam maupun luar negeri.”
+                          </p>
+                        </div>
+                        <div className="mt-4">
+                          <h3 className="text-2xl font-bold">{member.name}</h3>
+                          <p className="text-gray-400">{member.role}</p>
+                        </div>
+                        <div className="mt-10 flex items-center justify-center gap-4">
+                          <div className="w-32 h-32 rounded-full overflow-hidden">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="text-2xl font-semibold text-gray-900">{name}</h3>
-                      <p className="text-blue-600 text-lg mt-2">{role}</p>
-                    </div>
+                    </SwiperSlide>
                   ))}
-                </div>
-
-                {/* B */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-3xl mx-auto mt-16">
-                  {teamBottom.map(({name,role,image}, index) => (
-                    <div key={index} className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-300">
-                      <div className="w-64 h-64 mb-6 rounded-xl overflow-hidden flex items-center justify-center bg-gray-50">
-                        <img src={image} alt={name} className="w-full h-full object-cover object-top" draggable={false} />
-                      </div>
-                      <h3 className="text-2xl font-semibold text-gray-900">{name}</h3>
-                      <p className="text-blue-600 text-lg mt-2">{role}</p>
-                    </div>
-                  ))}
-                </div>
+                </Swiper>
               </div>
             </section>
           </RevealOnScroll>

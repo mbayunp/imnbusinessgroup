@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../hooks/useAdminAuth';
 import { getCareerStats, CareerStats } from '../services/careerService';
-import { getPressReleaseStats, pressReleaseServices } from '../services/pressReleaseService';
+import { getPressReleaseStats, PressReleaseStats } from '../services/pressReleaseService';
 import { getAllContactMessages, deleteContactMessage, updateContactMessageStatus } from '../services/contactService';
 import { ContactMessage } from '../types/contact';
 import { AxiosError } from 'axios';
